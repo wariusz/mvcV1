@@ -17,7 +17,7 @@ class Students
         $stmt = $this->pdo->prepare('Select * from uczen');
         $isExist = $stmt->execute();
         $row = $stmt->rowCount();
-        $tab = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $tab = $stmt->fetchAll(\PDO::FETCH_ASSOC);
         $stmt->closeCursor();
         return $tab;
     }

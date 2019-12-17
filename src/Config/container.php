@@ -9,8 +9,8 @@ $container[\App\Model\Students::class] = function ($c) {
 
 $container[PDO::class] = function () use($settings) {
     $host = $settings['db']['host'];
-    $dbName = $settings['db']['dbName'];
-    $username = $settings['db']['dbName'];
+    $dbName = $settings['db']['database'];
+    $username = $settings['db']['username'];
     $password = $settings['db']['password'];
     return new PDO("mysql:host=$host; dbname=$dbName", $username, $password);
 };

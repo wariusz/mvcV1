@@ -9,7 +9,7 @@ $app->get('/', function (Request $request, Response $response) {
 $app->get('/show', function (Request $request, Response $response) use ($container) {
     $model = $container->get(\App\Model\Students::class);
     $model->showStudents();
-    return $response;
+    echo require __DIR__.'/../View/view.php';
 });
 
 $app->post('/add', function (Request $request, Response $response) use ($container) {
