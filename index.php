@@ -1,6 +1,6 @@
 <?php
 /** @var Slim\App $app */
-$app = require 'config/bootstrap.php';
+$app = require __DIR__ . '/src/Config/bootstrap.php';
 
 // Start
 $app->run();
