@@ -1,5 +1,5 @@
 ﻿<?php
-namespace App\model;
+//namespace App\model;
     class Model
     {
         protected $pdo;
