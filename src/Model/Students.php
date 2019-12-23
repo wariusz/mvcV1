@@ -41,10 +41,10 @@ namespace App\Model;
             }
         }//add_student end
 
-        public function editStudent($imie, $nazwisko, $klasa, $rocznik, $firstSecondName)
+        public function editStudent($imie, $nazwisko, $klasa, $rocznik, $id)
         {
-            $stmt = $this->pdo->prepare("UPDATE uczen Set imie = :imie, nazwisko = :nazwisko, klasa = :klasa, rocznik = :rocznik Where nazwisko = :firstSecondName");
-            $stmt->bindParam(':firstSecondName', $firstSecondName, \PDO::PARAM_STR);
+            $stmt = $this->pdo->prepare("UPDATE uczen Set imie = :imie, nazwisko = :nazwisko, klasa = :klasa, rocznik = :rocznik Where Id = :id");
+            $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
             $stmt->bindParam(':imie', $imie, \PDO::PARAM_STR);
             $stmt->bindParam(':nazwisko', $nazwisko, \PDO::PARAM_STR);
             $stmt->bindParam(':klasa', $klasa, \PDO::PARAM_INT);
@@ -61,10 +61,10 @@ namespace App\Model;
             }
         }
 
-        public function oneStudent($nazwisko)
+        public function oneStudent($id)
         {
-            $stmt = $this->pdo->prepare("Select * from uczen WHERE nazwisko = :nazwisko");
-            $stmt->bindParam(':nazwisko', $nazwisko);
+            $stmt = $this->pdo->prepare("Select * from uczen WHERE id = :id");
+            $stmt->bindParam(':id', $id);
             $stmt->execute();
             $data = $stmt->fetch();
             $stmt->closeCursor();
