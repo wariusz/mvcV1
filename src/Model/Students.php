@@ -41,13 +41,14 @@ namespace App\Model;
             }
         }//add_student end
 
-        public function editStudent($imie, $nazwisko, $klasa, $rocznik)
+        public function editStudent($imie, $nazwisko, $klasa, $rocznik, $firstSecondName)
         {
-            $stmt = $this->pdo->prepare("UPDATE uczen Set imie = :imie, nazwisko = :nazwisko, klasa = :klasa, rocznik = :rocznik Where nazwisko = :nazwisko");
-            $stmt->bindParam(':imie', $imie);
-            $stmt->bindParam(':nazwisko', $nazwisko);
-            $stmt->bindParam(':klasa', $klasa);
-            $stmt->bindParam(':rocznik', $rocznik);
+            $stmt = $this->pdo->prepare("UPDATE uczen Set imie = :imie, nazwisko = :nazwisko, klasa = :klasa, rocznik = :rocznik Where nazwisko = :firstSecondName");
+            $stmt->bindParam(':firstSecondName', $firstSecondName, \PDO::PARAM_STR);
+            $stmt->bindParam(':imie', $imie, \PDO::PARAM_STR);
+            $stmt->bindParam(':nazwisko', $nazwisko, \PDO::PARAM_STR);
+            $stmt->bindParam(':klasa', $klasa, \PDO::PARAM_INT);
+            $stmt->bindParam(':rocznik', $rocznik, \PDO::PARAM_INT);
             $stmt->execute();
             $amount = $stmt->rowCount();
             $stmt->closeCursor();

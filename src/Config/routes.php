@@ -69,13 +69,14 @@ $app->get('/edit', function (Request $request, Response $response) use ($contain
     else  if(isset($_GET["uczniowie"])){
         //echo "test";
         $chooseStudent = $model->oneStudent($_GET["uczniowie"]);  //downloading data of one student
+        $firstSecondName = $chooseStudent["nazwisko"];
         echo "
             <form action='editNow' method='GET' name='zapytanie'>
             <input name='imie' placeholder='wpisz imie' value=".$chooseStudent["imie"].">
             <input name='nazwisko' placeholder='wpisz nazwisko' value=".$chooseStudent["nazwisko"].">
             <input name='klasa' placeholder='wpisz klasę' value=".$chooseStudent["klasa"].">
             <input name='rocznik' type='number' placeholder='wpisz rocznik' value=".$chooseStudent["rocznik"].">
-            <input type='hidden' name='operation' value='editNow'>
+            <input type='hidden' name='firstSecondName' value='$firstSecondName'>
             <button>Zmień</button>
             </form><br>";
     }
@@ -84,5 +85,5 @@ $app->get('/edit', function (Request $request, Response $response) use ($contain
 
 $app->get('/editNow', function (Request $request, Response $response) use ($container){
     $model = $container->get(\App\Model\Students::class);
-    $model->editStudent($_GET["imie"], $_GET["nazwisko"], $_GET["klasa"], $_GET["rocznik"]);
+    $model->editStudent($_GET["imie"], $_GET["nazwisko"], $_GET["klasa"], $_GET["rocznik"], $_GET["firstSecondName"]);
 });
