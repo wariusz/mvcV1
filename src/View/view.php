@@ -30,7 +30,7 @@
 
 
             if(!isset($_GET["uczniowie"])) {
-                $tab = $obiekt->showStudents(); //return array with data of students
+               // $tab = $obiekt->showStudents(); //return array with data of students
 
             }
         }
@@ -39,11 +39,11 @@
     {echo "<br> Nie wybranu żadnej operacji";}
     ?>
 
-    <form >
+    <form>
         <a href="show"><input type="button" value="show"></a>
         <button name="operation" value="add">Dodaj ucznia</button>
-        <button name="operation" value="edit">Edytuj ucznia</button>
-        <button name="operation" value="delete">Usuń ucznia</button>
+       <a href="edit"> <input type="button" value="edit"></a>
+       <a href="delete" > <input type="button" value="delete"></a>
     </form>
 
 
