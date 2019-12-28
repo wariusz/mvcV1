@@ -1,47 +1,15 @@
-﻿<!doctype htlm>
+<!doctype htlm>
 <html>
 <head>
     <title>Html5 </title>
     <meta charset="utf-8">
 
     <body>
-<h1>Wybierz operację do wykonania</h1>
-    <?php
-
-    if(isset($_GET["operation"])){
-
-       if ($_GET["operation"]=="add"){
-        echo "
-        <form action='add' method='post'>
-        <input name='imie' placeholder='wpisz imie' required>
-        <input name='nazwisko' placeholder='wpisz nazwisko' required>
-         <input name='klasa' placeholder='wpisz klasę' required>
-        <input name='rocznik' type='number' placeholder='wpisz rocznik'>
-        <input type='hidden' name='operation' value='add'>
-        <button>dodaj</button>
-        </form>";
-        }
-       elseif ($_GET['operation']=="edit"){
-
-
-       }
-
-        elseif ($_GET["operation"]=="delete"){
-
-
-            if(!isset($_GET["uczniowie"])) {
-               // $tab = $obiekt->showStudents(); //return array with data of students
-
-            }
-        }
-    }
-    else
-    {echo "<br> Nie wybranu żadnej operacji";}
-    ?>
+    <h1>Wybierz operację do wykonania</h1>
 
     <form>
-        <a href="show"><input type="button" value="show"></a>
-        <button name="operation" value="add">Dodaj ucznia</button>
+       <a href="show"><input type="button" value="show"></a>
+       <a href="add"><input type="button" value="add"></a>
        <a href="edit"> <input type="button" value="edit"></a>
        <a href="delete" > <input type="button" value="delete"></a>
     </form>

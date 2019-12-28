@@ -4,6 +4,8 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 
 $app->get('/', function (Request $request, Response $response) use ($container) {
+    echo require __DIR__.'/../View/view.php';
+
 });
 
 $app->get('/show', function (Request $request, Response $response) use ($container) {
@@ -16,16 +18,30 @@ $app->get('/show', function (Request $request, Response $response) use ($contain
 
     }
     echo "</table>";
-    echo require __DIR__.'/../View/view.php';
+   // echo require __DIR__.'/../View/view.php';
 });
 
-$app->post('/add', function (Request $request, Response $response) use ($container) {
-    $model = $container->get(\App\Model\Students::class);
-    $imie = $_POST["imie"];
-    $nazwisko = $_POST["nazwisko"];
-    $klasa = $_POST["klasa"];
-    $rocznik = $_POST["rocznik"];
-    $model->addStudent($imie, $nazwisko, $klasa, $rocznik);
+$app->get('/add', function (Request $request, Response $response) use ($container) {
+
+    if(!isset($_GET["operation"])) {
+        echo "
+        <form action='add' method='GET'>
+        <input name='imie' placeholder='wpisz imie' required>
+        <input name='nazwisko' placeholder='wpisz nazwisko' required>
+         <input name='klasa' placeholder='wpisz klasę' required>
+        <input name='rocznik' type='number' placeholder='wpisz rocznik'>
+        <input type='hidden' name='operation' value='add'>
+        <button>dodaj</button>
+        </form>";
+    }
+    else {
+        $model = $container->get(\App\Model\Students::class);
+        $imie = $_GET["imie"];
+        $nazwisko = $_GET["nazwisko"];
+        $klasa = $_GET["klasa"];
+        $rocznik = $_GET["rocznik"];
+        $model->addStudent($imie, $nazwisko, $klasa, $rocznik);
+    }
 });
 
 $app->get('/delete', function (Request $request, Response $response) use ($container) {
